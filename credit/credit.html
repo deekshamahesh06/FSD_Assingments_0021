@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Card Payment</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            background: #fff;
+            overflow: hidden;
+        }
+
+        /* ================= LEFT SIDE ================= */
+
+        .left-section {
+            width: 50%;
+            min-height: 100vh;
+            background: linear-gradient(
+                135deg,
+                #16001f,
+                #321044,
+                #16001f
+            );
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Purple border */
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            border: 2px solid #8b35ff;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        /* ================= FRONT CARD ================= */
+
+        .card-front {
+            width: 405px;
+            height: 222px;
+            position: absolute;
+            top: 53px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 8px;
+
+            background:
+                radial-gradient(
+                    circle at 75% 25%,
+                    rgba(255, 90, 100, 0.8),
+                    transparent 35%
+                ),
+                radial-gradient(
+                    circle at 55% 70%,
+                    rgba(50, 150, 255, 0.8),
+                    transparent 40%
+                ),
+                linear-gradient(
+                    135deg,
+                    #4030d9,
+                    #7624a9,
+                    #46126b
+                );
+
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            color: white;
+            padding: 25px 29px;
+            z-index: 3;
+        }
+
+        .card-top {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .chip {
+            width: 43px;
+            height: 43px;
+            border-radius: 50%;
+            background: #eee;
+        }
+
+        .small-circle {
+            width: 20px;
+            height: 20px;
+            border: 1px solid #ddd;
+            border-radius: 50%;
+        }
+
+        .card-number {
+            margin-top: 57px;
+            font-size: 25px;
+            letter-spacing: 3px;
+            font-weight: 500;
+        }
+
+        .card-bottom {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 25px;
+        }
+
+        .card-label {
+            font-size: 11px;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+            opacity: 0.8;
+        }
+
+        .card-value {
+            font-size: 13px;
+            letter-spacing: 1px;
+            font-weight: bold;
+        }
+
+
+        /* ================= BACK CARD ================= */
+
+        .card-back {
+            width: 405px;
+            height: 222px;
+            position: absolute;
+            top: 309px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 8px;
+
+            background: linear-gradient(
+                145deg,
+                #eeeeee,
+                #cfd2d7
+            );
+
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .black-strip {
+            width: 100%;
+            height: 49px;
+            background: #202020;
+            margin-top: 20px;
+        }
+
+        .signature-area {
+            width: 80%;
+            height: 35px;
+            margin: 22px auto;
+            background: #9aa2ab;
+            border-radius: 3px;
+
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding-right: 15px;
+
+            color: white;
+            font-size: 12px;
+        }
+
+        .back-lines {
+            width: 170px;
+            margin-left: 118px;
+            margin-top: 10px;
+        }
+
+        .back-lines div {
+            height: 4px;
+            background: #9299a0;
+            margin: 5px 0;
+            border-radius: 4px;
+        }
+
+        .line1 {
+            width: 170px;
+        }
+
+        .line2 {
+            width: 130px;
+            margin-left: 15px;
+        }
+
+        .line3 {
+            width: 145px;
+        }
+
+
+        /* ================= RIGHT SIDE ================= */
+
+        .right-section {
+            width: 50%;
+            min-height: 100vh;
+            background: #f7f7f7;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .form-container {
+            width: 345px;
+        }
+
+        .form-group {
+            margin-bottom: 23px;
+        }
+
+        label {
+            display: block;
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            height: 42px;
+            border: 1px solid #d0d0d0;
+            border-radius: 7px;
+            padding: 0 14px;
+            font-size: 15px;
+            outline: none;
+            background: white;
+        }
+
+        input:focus {
+            border-color: #43104f;
+        }
+
+        .row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .expiry {
+            display: flex;
+            gap: 10px;
+            width: 155px;
+        }
+
+        .expiry input {
+            width: 72px;
+        }
+
+        .cvc {
+            flex: 1;
+        }
+
+        .confirm-btn {
+            width: 100%;
+            height: 49px;
+            border: none;
+            border-radius: 7px;
+            background: #21002c;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 13px;
+        }
+
+        .confirm-btn:hover {
+            background: #3a064a;
+        }
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 900px) {
+
+            body {
+                overflow-y: auto;
+            }
+
+            .left-section {
+                display: none;
+            }
+
+            .right-section {
+                width: 100%;
+                min-height: 100vh;
+            }
+
+            .form-container {
+                width: 90%;
+                max-width: 400px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ================= LEFT ================= -->
+
+    <section class="left-section">
+
+        <!-- FRONT CARD -->
+
+        <div class="card-front">
+
+            <div class="card-top">
+                <div class="chip"></div>
+                <div class="small-circle"></div>
+            </div>
+
+            <div class="card-number" id="displayCardNumber">
+                0000 0000 0000 0000
+            </div>
+
+            <div class="card-bottom">
+
+                <div>
+                    <div class="card-label">CARDHOLDER NAME</div>
+                    <div class="card-value" id="displayName">
+                        JANE APPLESEED
+                    </div>
+                </div>
+
+                <div>
+                    <div class="card-label">EXPIRES</div>
+                    <div class="card-value" id="displayExpiry">
+                        00/00
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- BACK CARD -->
+
+        <div class="card-back">
+
+            <div class="black-strip"></div>
+
+            <div class="signature-area">
+                <span id="displayCvc">000</span>
+            </div>
+
+            <div class="back-lines">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= RIGHT ================= -->
+
+    <section class="right-section">
+
+        <div class="form-container">
+
+            <div class="form-group">
+                <label>CARDHOLDER NAME</label>
+
+                <input
+                    type="text"
+                    id="name"
+                    value="JANE APPLESEED"
+                >
+            </div>
+
+
+            <div class="form-group">
+                <label>CARD NUMBER</label>
+
+                <input
+                    type="text"
+                    id="cardNumber"
+                    value="1234 5678 9123 0000"
+                    maxlength="19"
+                >
+            </div>
+
+
+            <div class="row">
+
+                <div class="form-group expiry">
+                    <div>
+                        <label>EXP. DATE (MM/YY)</label>
+                        <input
+                            type="text"
+                            id="month"
+                            value="08"
+                            maxlength="2"
+                        >
+                    </div>
+
+                    <div>
+                        <label>&nbsp;</label>
+                        <input
+                            type="text"
+                            id="year"
+                            value="28"
+                            maxlength="2"
+                        >
+                    </div>
+                </div>
+
+
+                <div class="form-group cvc">
+                    <label>CVC</label>
+
+                    <input
+                        type="text"
+                        id="cvc"
+                        value="123"
+                        maxlength="3"
+                    >
+                </div>
+
+            </div>
+
+
+            <button class="confirm-btn" onclick="confirmCard()">
+                Confirm
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+        const nameInput = document.getElementById("name");
+        const cardInput = document.getElementById("cardNumber");
+        const monthInput = document.getElementById("month");
+        const yearInput = document.getElementById("year");
+        const cvcInput = document.getElementById("cvc");
+
+        const displayName = document.getElementById("displayName");
+        const displayCardNumber =
+            document.getElementById("displayCardNumber");
+        const displayExpiry =
+            document.getElementById("displayExpiry");
+        const displayCvc =
+            document.getElementById("displayCvc");
+
+
+        /* Update cardholder name */
+
+        nameInput.addEventListener("input", function () {
+
+            displayName.textContent =
+                this.value.toUpperCase() || "YOUR NAME";
+
+        });
+
+
+        /* Update card number */
+
+        cardInput.addEventListener("input", function () {
+
+            let value = this.value
+                .replace(/\D/g, "")
+                .substring(0, 16);
+
+            value = value.match(/.{1,4}/g)?.join(" ") || "";
+
+            this.value = value;
+
+            displayCardNumber.textContent =
+                value || "0000 0000 0000 0000";
+
+        });
+
+
+        /* Update expiry */
+
+        function updateExpiry() {
+
+            let month = monthInput.value || "00";
+            let year = yearInput.value || "00";
+
+            displayExpiry.textContent =
+                month + "/" + year;
+        }
+
+        monthInput.addEventListener("input", updateExpiry);
+        yearInput.addEventListener("input", updateExpiry);
+
+
+        /* Update CVC */
+
+        cvcInput.addEventListener("input", function () {
+
+            this.value = this.value
+                .replace(/\D/g, "")
+                .substring(0, 3);
+
+            displayCvc.textContent =
+                this.value || "000";
+
+        });
+
+
+        /* Confirm button */
+
+        function confirmCard() {
+
+            alert(
+                "Card details confirmed!\n\n" +
+                "Cardholder: " + nameInput.value + "\n" +
+                "Card Number: " + cardInput.value + "\n" +
+                "Expiry: " + monthInput.value + "/" +
+                yearInput.value + "\n" +
+                "CVC: " + cvcInput.value
+            );
+
+        }
+
+    </script>
+
+</body>
+</html>
