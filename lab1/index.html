@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Portfolio</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header>
+        <nav class="navbar">
+
+            <h2 class="logo">MyPortfolio</h2>
+
+            <button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+
+            <button class="theme-btn" onclick="toggleTheme()">🌙</button>
+
+        </nav>
+    </header>
+
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+
+        <div class="hero-text">
+            <p>Hello, I'm</p>
+
+            <h1>Deeksha Mahesh</h1>
+
+            <h2>Student & Web Developer</h2>
+
+            <p>
+                I am learning web development and creating
+                responsive and interactive websites.
+            </p>
+
+            <a href="#projects" class="btn">View My Projects</a>
+        </div>
+
+        <div class="hero-image">
+            <div class="profile-circle">👩‍💻</div>
+        </div>
+
+    </section>
+
+
+    <!-- About -->
+    <section id="about" class="section">
+
+        <h2>About Me</h2>
+
+        <p>
+            I am a student interested in technology, programming
+            and web development. I enjoy learning new technologies
+            and building creative projects.
+        </p>
+
+    </section>
+
+
+    <!-- Skills -->
+    <section id="skills" class="section">
+
+        <h2>My Skills</h2>
+
+        <div class="skills-container">
+
+            <div class="card">
+                <h3>HTML</h3>
+                <p>Creating structured web pages.</p>
+            </div>
+
+            <div class="card">
+                <h3>CSS</h3>
+                <p>Designing responsive layouts.</p>
+            </div>
+
+            <div class="card">
+                <h3>JavaScript</h3>
+                <p>Adding interactive functionality.</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Projects -->
+    <section id="projects" class="section">
+
+        <h2>My Projects</h2>
+
+        <div class="projects-container">
+
+            <div class="project-card">
+                <h3>Traffic Management System</h3>
+                <p>
+                    A project designed to analyze traffic
+                    conditions and improve traffic management.
+                </p>
+                <button onclick="showMessage('Traffic Management Project')">
+                    View Project
+                </button>
+            </div>
+
+            <div class="project-card">
+                <h3>Portfolio Website</h3>
+                <p>
+                    A responsive personal portfolio website
+                    created using HTML, CSS and JavaScript.
+                </p>
+                <button onclick="showMessage('Portfolio Project')">
+                    View Project
+                </button>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Contact -->
+    <section id="contact" class="section">
+
+        <h2>Contact Me</h2>
+
+        <form onsubmit="submitForm(event)">
+
+            <input
+                type="text"
+                id="name"
+                placeholder="Your Name"
+                required
+            >
+
+            <input
+                type="email"
+                id="email"
+                placeholder="Your Email"
+                required
+            >
+
+            <textarea
+                id="message"
+                placeholder="Your Message"
+                required
+            ></textarea>
+
+            <button type="submit" class="btn">
+                Send Message
+            </button>
+
+        </form>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 My Portfolio | Designed using HTML, CSS & JavaScript</p>
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
