@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>WebSphere - Web Fundamentals Browser</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- BROWSER WINDOW -->
+    <div class="browser">
+
+        <!-- TOP BAR -->
+        <header class="browser-header">
+
+            <div class="browser-title">
+                <div class="logo">W</div>
+                <span>WebSphere</span>
+            </div>
+
+            <div class="window-buttons">
+                <button>−</button>
+                <button>□</button>
+                <button>×</button>
+            </div>
+
+        </header>
+
+
+        <!-- TABS -->
+        <div class="tabs">
+
+            <div class="tab active" data-route="home">
+                <span>🌐</span>
+                <span>WebSphere</span>
+                <button class="close-tab">×</button>
+            </div>
+
+            <button class="new-tab" id="newTab">+</button>
+
+        </div>
+
+
+        <!-- NAVIGATION BAR -->
+        <div class="navigation">
+
+            <button class="nav-button" id="backButton" title="Back">
+                ←
+            </button>
+
+            <button class="nav-button" id="forwardButton" title="Forward">
+                →
+            </button>
+
+            <button class="nav-button" id="reloadButton" title="Reload">
+                ↻
+            </button>
+
+            <button class="nav-button" id="homeButton" title="Home">
+                🏠
+            </button>
+
+            <div class="address-bar">
+
+                <span class="security">🔒</span>
+
+                <input
+                    type="text"
+                    id="addressInput"
+                    value="websphere.local/home"
+                    placeholder="Search or enter address"
+                >
+
+                <button id="searchButton">🔍</button>
+
+            </div>
+
+        </div>
+
+
+        <!-- PAGE CONTENT -->
+        <main id="pageContent"></main>
+
+
+        <!-- STATUS BAR -->
+        <footer class="status-bar">
+
+            <div>
+                🔒 Secure connection
+            </div>
+
+            <div>
+                Web Fundamentals Browser
+            </div>
+
+            <div id="statusText">
+                Ready
+            </div>
+
+        </footer>
+
+    </div>
+
+
+    <script src="app.js"></script>
+
+</body>
+</html>
